@@ -3,4 +3,4 @@ project(CodeChef)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(. )
+add_executable(. "Fit Squares in Triangle.cpp")
