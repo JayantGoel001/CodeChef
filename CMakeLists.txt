@@ -3,4 +3,4 @@ project(CodeChef)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(. "Hiring Test.cpp")
+add_executable(. "Thief and Police.cpp")
