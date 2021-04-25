@@ -13,15 +13,9 @@ int main(){
         cin>>x>>y;
         cin>>a>>b;
         int dThief = (N - x) + (M - y);
-        int dPolice = (N - a) + (M - b);
+        int dPolice = max(N - a,M - b);
         if (dThief<=dPolice){
-            if (x+1>=N && y+1>=M){
-                cout<<"YES\n";
-            }else if (x+1== a || y+1==b){
-                cout<<"NO\n";
-            } else {
-                cout << "YES\n";
-            }
+            cout << "YES\n";
         }else{
             cout<<"NO\n";
         }
