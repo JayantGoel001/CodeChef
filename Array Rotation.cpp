@@ -1,8 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
 #include <cmath>
-
 #define ll long long int
 using namespace std;
 int main(){
@@ -15,14 +13,14 @@ int main(){
     ll sum = (ll)0;
     for (int i = 0; i < n; ++i) {
         cin>>xq;
-        sum=(sum+xq)%mod;
+        sum= (sum+xq +mod)%mod;
     }
     int q;
     cin>>q;
     int x;
     for (int i = 0; i < q; ++i) {
         cin>>x;
-        sum = (sum*2)%mod;
+        sum = (sum + sum)%mod;
         cout<<sum<<"\n";
     }
 }
