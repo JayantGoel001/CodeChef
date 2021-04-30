@@ -3,4 +3,4 @@ project(CodeChef)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(. "Chef in Heaven.cpp")
+add_executable(. "Array Rotation.cpp")
