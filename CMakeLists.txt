@@ -3,4 +3,4 @@ project(CodeChef)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(. "Xor Equality.cpp")
+add_executable(. "Modular Equation.cpp")
