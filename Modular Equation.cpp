@@ -12,10 +12,9 @@ int main(){
         cin>>n>>m;
         ll count = 0;
         for (int i = 1; i <= n; ++i) {
-            for (int j = i+1; j <=n ; ++j) {
-                if ((m%i)%j == (m%j)%i){
-                    count++;
-                }
+            ll j = m/i;
+            if (m%i==0 && m%j==0){
+                count++;
             }
         }
         cout<<count<<"\n";
