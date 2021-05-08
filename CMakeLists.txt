@@ -3,4 +3,4 @@ project(CodeChef)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(. "Tic Tac Toe.cpp")
+add_executable(. "An Interesting Sequence.cpp")
