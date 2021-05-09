@@ -3,4 +3,4 @@ project(CodeChef)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(. "Modular Equation.cpp")
+add_executable(. "Tree House.cpp")

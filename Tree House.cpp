@@ -1,8 +1,35 @@
 #include <iostream>
 #include <cmath>
-#include <map>
+#include <vector>
+#include <algorithm>
+
 #define ll long long int
 using namespace std;
+void calculate(vector<ll> *adj,vector<ll> &sub,vector<ll> &val,vector<pair<ll,ll>> &ch,int i,int last=-1){
+    for (int j = 0; j < adj[i].size(); ++j) {
+        if (adj[i][j]==last){
+            continue;
+        }
+        calculate(adj,sub,val,ch,adj[i][j],i);
+    }
+    ch.clear();
+    for(auto it:adj[i]){
+        if (it!=last){
+            ch.emplace_back(sub[it],it);
+        }
+    }
+    sort(ch.rbegin(),ch.rend());
+    ll count = 1;
+    for(auto it=ch.begin();it!=ch.end();it++){
+        val[it->second]=count++;
+    }
+    for(auto x:adj[i]){
+        if (x!=last){
+            sub[i]+=val[x]*sub[x];
+        }
+    }
+
+}
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -13,21 +40,19 @@ int main(){
     while (t--){
         ll n,x;
         cin>>n>>x;
-        map<ll,ll> mp;
+        vector<ll> adj[n],sub,val;
+        vector<pair<ll,ll>> ch;
+        sub.assign(n,1);
+        val.assign(n,0);
         for (int i = 0; i < n - 1; ++i) {
-            ll u,v;
+            int u,v;
             cin>>u>>v;
-            if (mp.count(u)==0){
-                mp[u] = 0;
-            }
-            mp[u] = (mp[u]+1)%mod;
+            u--;
+            v--;
+            adj[u].emplace_back(v);
+            adj[v].emplace_back(u);
         }
-        ll sum = x;
-        for (int i = 1; i <= n; ++i) {
-            ll z = mp[i]%mod;
-            ll w = ((z*(z+1))/2);
-            sum = (sum + (x * w)%mod)%mod;
-        }
-        cout<<sum<<"\n";
+        calculate(adj,sub,val,ch,0);
+        cout<<sub[0]%mod * x%mod<<"\n";
     }
 }
