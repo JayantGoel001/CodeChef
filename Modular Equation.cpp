@@ -3,6 +3,21 @@
 
 #define ll long long int
 using namespace std;
+ll calculateDivisors(ll A,ll B,int j){
+    ll n = A - B;
+    ll num = 0;
+    for (int i = 1; i <=min((int)sqrt(n),j) ; ++i) {
+        if (n%i==0){
+            if (i<j){
+                num++;
+            }
+            if ((n/i)!=i && (n/i)<j){
+                num++;
+            }
+        }
+    }
+    return num;
+}
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -13,23 +28,12 @@ int main(){
         ll n,m;
         cin>>n>>m;
         ll count = 0;
-        for (int i = 1; i <=n ; ++i) {
-            for (int j = i+1; j <=n ; ++j) {
-                if ((m%i)  == (m%j)%i){
-                    count++;
-                    cout<<i<<" "<<j<<"\n";
-                }
-            }
+        for (int j = 1; j <= min(n,m); ++j) {
+            count+=calculateDivisors(m, m % j,j);
         }
-        cout<<count<<"\n";
-        count=n-1;
-        for (int i = 2; i <= ceil(sqrt(n)); ++i) {
-            for (int j = ceil(sqrt(n)); j <=n ; ++j) {
-                if (i!=j && (m%i)  == (m%j)%i){
-                    count++;
-                    cout<<i<<" "<<j<<"\n";
-                }
-            }
+        if (n>m){
+            count+=(n-m)*m;
+            count+=(n-m)*(n-m-1)/2;
         }
         cout<<count<<"\n";
     }

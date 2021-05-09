@@ -4,11 +4,11 @@
 
 #define ll long long int
 using namespace std;
-ll GCD(ll a,ll b,const bool *isPrime){
+ll GCD(ll a,ll b){
     if (b==0){
         return a;
     }
-    return GCD(b,a%b,isPrime);
+    return GCD(b,a%b);
 }
 int main(){
     int t;
@@ -29,33 +29,34 @@ int main(){
     while (t--){
         int k;
         cin>>k;
-//        ll sum = 0;
-//        vector<ll> v;
-//        for (int i = 1; i <=2*k+1 ; ++i) {
-//            v.push_back(k + i*i);
-//        }
-//        for (long long i : v) {
-//            cout<<i<<" ";
-//        }
-//        cout<<"\n";
-//        for (int i = 0; i <v.size()-1; ++i) {
-//            sum+=GCD(v[i],v[i+1],isPrime);
-//            cout<<GCD(v[i],v[i+1],isPrime)<<" ";
-//        }
-//        cout<<"\n";
-//        cout<<sum<<"\n";
+        ll sum = 0;
+        vector<ll> v;
+        for (int i = 1; i <=2*k+1 ; ++i) {
+            v.push_back(k + i*i);
+        }
+        for (long long i : v) {
+            cout<<i<<" ";
+        }
+        cout<<"\n";
+        for (int i = 0; i <v.size()-1; ++i) {
+            sum+=GCD(v[i],v[i+1]);
+            cout<<GCD(v[i],v[i+1])<<" ";
+        }
+        cout<<"\n";
+        cout<<sum<<"\n";
         ll lastNumber = 4*k+1;
         if (isPrime[lastNumber]){
             cout<<lastNumber + (2*k-1)<<"\n";
         } else {
-            ll sum = 0;
+            sum = 0;
             for (int i = 1; i <= 2 * k; ++i) {
                 if (!isPrime[k + i * i] || !isPrime[2*i+1]) {
-                    sum += GCD(k + i * i, 2 * i + 1,isPrime);
+                    sum += GCD(k + i * i, 2 * i + 1);
                 } else {
                     sum += 1;
                 }
             }
+            cout<<"\n";
             cout << sum << "\n";
         }
 //            vector<ll> factors;
