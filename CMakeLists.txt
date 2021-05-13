@@ -3,4 +3,4 @@ project(CodeChef)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(. "Valid Paths.cpp")
+add_executable(. "Robot and Paths.cpp")
