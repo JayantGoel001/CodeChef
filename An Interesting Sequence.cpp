@@ -1,31 +1,36 @@
 #include <iostream>
-#include <set>
 #include <valarray>
-#include <vector>
-#include <map>
 #define ll long long int
 using namespace std;
-ll GCD(ll a,ll b){
-    if (b==0){
-        return a;
-    }
-    return GCD(b,a%b);
-}
-float result(float d,float r,int k){
-    return 3+(k-1)*d + 3 * pow(r,k-1);
-}
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    ll TOT = 4*pow(10,6)+5;
+    ll p[TOT],ar[TOT];
+    for (int i = 0; i < TOT; ++i) {
+        p[i]= i;
+        ar[i] = 0;
+    }
+    for (int i = 2; i <TOT ; ++i) {
+        if (p[i]==i){
+            p[i] = i-1;
+            for (int j = 2*i; j <TOT; j+=i) {
+                p[j] = (p[j]/i)*(i-1);
+            }
+        }
+    }
+    for (int i = 1; i <TOT ; ++i) {
+        ar[i]+=i-1;
+        for (int j = 2*i; j <TOT ; j+=i) {
+            ar[j] += i*((1+p[j/i])/2);
+        }
+    }
     int t;
     cin>>t;
     while (t--){
         int k;
         cin>>k;
-        ll sum = 0;
-        float d1 = ceil(14.0 + 2*sqrt(3));
-        float r1 = ceil(1.0 + 2.0/sqrt(3));
-//        float d2 = (14.0 + 2*sqrt(3));
-//        float r2 = (1.0 - 2.0/sqrt(3));
-
-        cout<<(result(d1,r1,k));// + result(d2,r2,k))/2.0<<"\n";
+        cout<<ar[4*k+1]<<"\n";
     }
 }
