@@ -1,39 +1,49 @@
-#include <iostream>
-#include <vector>
-#include <valarray>
+#include <bits/stdc++.h>
 #define ll long long int
 using namespace std;
-ll calculate(vector<vector<int>> &v,int i,int n,vector<bool> visited,ll mod){
-    if (visited[i]){
-        return 0;
+const ll mod = pow(10,9)+7;
+void calculateNumberOfPairs(vector<vector<ll>> &v,vector<ll> &dp,vector<ll> &total,int current,int p){
+    dp[current] = 1;
+    total[current] = 1;
+    ll sum =0;
+    ll count = 0;
+    for (int i = 0; i < v[current].size(); ++i) {
+        ll currentNode = v[current][i];
+        if (currentNode!=p){
+            calculateNumberOfPairs(v,dp,total,currentNode,current);
+            dp[current] = (dp[current] + 2*dp[currentNode])%mod;
+            count++;
+            total[current] = (total[current]+ total[currentNode] + dp[currentNode])%mod;
+            sum+=dp[currentNode];
+        }
     }
-    ll sum = 1;
-    visited[i] = true;
-    for(auto it=v[i].begin();it!=v[i].end();it++){
-        sum= (sum%mod + calculate(v,*it,n,visited,mod)%mod)%mod;
+    for (int i = 0; i < v[current].size(); ++i) {
+        ll currentNode = v[current][i];
+        if (currentNode!=p){
+            total[current] = (total[current]+dp[currentNode]*((sum-dp[currentNode]+mod)%mod)%mod)%mod;
+        }
     }
-    return sum;
 }
+
 int main(){
     ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    ll mod = (ll)pow(10,9)+7;
+    cin.tie(NULL);
+    cout.tie(NULL);
     int t;
     cin>>t;
-    while (t--){
+    while(t--) {
         int n;
-        ll x;
-        cin>>n>>x;
-        vector<vector<int>> adj(n);
-        vector<bool> visited(n,false);
+        cin>>n;
+        vector<vector<ll>> v(n+1);
+        vector<ll> dp(n+1),total(n+1);
         for (int i = 0; i < n - 1; ++i) {
-            int u,v;
-            cin>>u>>v;
-            adj[u-1].push_back(v-1);
-            adj[v-1].push_back(u-1);
+            int x,y;
+            cin>>x>>y;
+            v[x].push_back(y);
+            v[y].push_back(x);
         }
-        ll res = calculate(adj,0,n,visited,mod);
-        cout<<res<<"\n";
+        calculateNumberOfPairs(v,dp,total,1,1);
+        ll ans = total[1]%mod;
+        cout<<ans<<"\n";
     }
 }
