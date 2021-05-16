@@ -16,22 +16,26 @@ void adjacentListToTree(Tree *tree,vector<vector<ll>> &adj,vector<bool> &visited
     visited[tree->data] = true;
     for (auto it:adj[tree->data]) {
         if (!visited[it]){
-            tree->children.push_back(new Tree(it));
+            Tree *node = new Tree(it);
+            tree->children.push_back(node);
         }
     }
     for(auto it:tree->children){
-        adjacentListToTree(it,adj,visited);
+        Tree *node = it;
+        adjacentListToTree(node,adj,visited);
     }
 }
 void findHeight(Tree *tree,ll height){
     tree->height = height;
     for (auto it:tree->children) {
-        findHeight(it,height+1);
+        Tree *node = it;
+        findHeight(node,height+1);
     }
 }
 void findLeaves(Tree *tree,vector<pair<ll,ll>> &leaves){
     for (auto it:tree->children) {
-        findLeaves(it,leaves);
+        Tree *node = it;
+        findLeaves(node,leaves);
     }
     if (tree->children.empty()){
         leaves.push_back(make_pair(tree->height,tree->data+1));
