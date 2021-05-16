@@ -3,4 +3,4 @@ project(CodeChef)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(. "An Interesting Sequence.cpp")
+add_executable(. "King Killing.cpp")
