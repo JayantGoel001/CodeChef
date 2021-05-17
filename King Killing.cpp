@@ -1,118 +1,93 @@
-#include<iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 #define ll long long int
+#define pb push_back
 using namespace std;
-class Tree{
-public:
-    ll data,height;
-    vector<Tree*> children;
-    Tree(ll data){
-        this->data = data;
-        this->height = 0;
-    }
-};
-void adjacentListToTree(Tree *tree,vector<vector<ll>> &adj,vector<bool> &visited){
-    visited[tree->data] = true;
-    for (auto it:adj[tree->data]) {
-        if (!visited[it]){
-            Tree *node = new Tree(it);
-            tree->children.push_back(node);
+vector<ll> pVector[200008],value,children,output;
+void dfs(ll now, ll last){
+    for(ll i=0; i < pVector[now].size(); i++){
+        ll child= pVector[now][i];
+        if(child!=last) {
+            dfs(child, now);
         }
     }
-    for(auto it:tree->children){
-        Tree *node = it;
-        adjacentListToTree(node,adj,visited);
+    children.clear();
+    for(ll i=0; i < pVector[now].size(); i++){
+        ll child= pVector[now][i];
+        if(child!=last)
+            children.push_back(value[child]);
     }
+
+    if(children.size() > 0){
+        sort(children.begin(), children.end());
+        ll x=children[0];
+        ll checker=0;
+        for(ll i=0; i < children.size(); i++){
+            if(children[i] != x) checker++;
+        }
+
+        if(checker==0) value[now]+= x+1;
+        if(checker!=0) value[now]+= x +2;
+    }else
+        value[now]=0;
 }
-void findHeight(Tree *tree,ll height){
-    tree->height = height;
-    for (auto it:tree->children) {
-        Tree *node = it;
-        findHeight(node,height+1);
+void dfs1(ll node, ll par, ll minh){
+    for(ll i=0; i < pVector[node].size(); i++){  //pVector
+
+        ll child= pVector[node][i];
+
+        minh = min(minh,value[node]);
+
+        if(child!=par){
+
+            if(value[child]>=minh-1){
+
+                dfs1(child,node,minh);
+
+            }
+
+        }
     }
-}
-void findLeaves(Tree *tree,vector<pair<ll,ll>> &leaves){
-    for (auto it:tree->children) {
-        Tree *node = it;
-        findLeaves(node,leaves);
-    }
-    if (tree->children.empty()){
-        leaves.push_back(make_pair(tree->height,tree->data+1));
+    if(value[node]==0){
+        output.push_back(node);
     }
 }
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int t;
-    cin>>t;
-    while (t--){
-        int n;
-        cin>>n;
-        vector<vector<ll>> adj(n);
-        vector<bool> visited(n);
-        for (int j = 0; j < n; ++j) {
-            visited[j] = false;
+    ll t = 1;
+    cin >> t;
+    while(t--) {
+        ll N; cin >> N;
+        value.assign(N+1,0);
+        for(ll i=0;i<N-1; i++){
+            int l, r;
+            cin >> l >> r;
+            pVector[l].pb(r), pVector[r].pb(l);
         }
-        Tree *tree = new Tree(0);
-        vector<pair<ll,ll>> output;
-        for (int i = 0; i < n - 1; ++i) {
-            ll u,v;
-            cin>>u>>v;
-            u-=1;
-            v-=1;
-            adj[u].push_back(v);
-            adj[v].push_back(u);
-        }
-        adjacentListToTree(tree,adj,visited);
-        findHeight(tree,0);
-        for (int i = 0; i < tree->children.size(); ++i) {
-            vector<pair<ll,ll>> leaves;
-            findLeaves(tree->children[i],leaves);
-            sort(leaves.begin(),leaves.end());
-            pair<ll,ll> pr = leaves[0];
-            vector<pair<ll,ll>> vp;
-            vp.push_back(pr);
-            bool found= false;
-            ll value = pr.first;
-            ll j = 1;
-            while (j<leaves.size()){
-                while (j<leaves.size() && leaves[j].first==value){
-                    if (found){
-                        vp.push_back(make_pair(pr.first+1,leaves[j].second));
-                    } else{
-                        vp.push_back(make_pair(leaves[j].first,leaves[j].second));
-                    }
-                    j+=1;
-                }
-                if (j<leaves.size()){
-                    vp.clear();
-                    found = true;
-                    pr.second = leaves[j].second;
-                    vp.push_back(make_pair(pr.first+1,leaves[j].second));
-                    value = leaves[j].first;
-                    j+=1;
-                }
-            }
-            for (int k = 0; k < vp.size(); ++k) {
-                output.push_back(make_pair(vp[k].first,vp[k].second));
+        dfs(1,0);
+        int minx = INT_MAX;
+        for(ll i = 0; i < pVector[1].size(); i++){
+            ll child = pVector[1][i];
+            if(value[child]<minx){
+                minx = value[child];
             }
         }
+        for(ll i=0; i < pVector[1].size(); i++){
+            ll child = pVector[1][i];
+            if(value[child] == minx)
+                dfs1(child,1,minx);
+        }
+
         sort(output.begin(), output.end());
-        ll numberOfDays = output[0].first;
-        vector<ll> result;
-        for(auto it:output){
-            if (it.first==numberOfDays){
-                result.push_back(it.second);
-            } else{
-                break;
-            }
+        cout << output.size() << " " << minx + 1 << endl;
+        for (ll i = 0; i < output.size(); ++i) cout << output[i] << " ";
+        cout<<endl;
+        for (ll i = 1; i <=N; ++i) {
+            pVector[i].clear();
         }
-        cout<<result.size()<<" "<<numberOfDays<<"\n";
-        for (auto it:result) {
-            cout<<it<<" ";
-        }
-        cout<<"\n";
+        value.clear();
+        output.clear();
     }
+    return 0;
 }
