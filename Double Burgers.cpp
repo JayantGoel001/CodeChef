@@ -1,7 +1,7 @@
 #include <iostream>
 #include <valarray>
 
-#define int long long int
+#define int unsigned long long int
 using namespace std;
 int power(int x,int y){
     if(y==0){
@@ -32,12 +32,16 @@ int32_t main(){
             cout<<"-1\n";
         } else{
             int count = 0;
-            while (y>0){
+            while (y!=0){
                 int time = calculateEaten(x,y);
-                count+=time;
                 y = y - x * calculateGP(time);
+                count+=time;
                 if (y!=0){
                     count++;
+                }
+                if (y<0){
+                    count=-1;
+                    break;
                 }
             }
             cout<<count<<"\n";
