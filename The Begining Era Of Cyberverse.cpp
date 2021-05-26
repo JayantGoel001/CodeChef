@@ -12,6 +12,6 @@ int32_t main(){
     while (t--){
         int n,k;
         cin>>n>>k;
-        cout<<n/k<<"\n";
+        cout<<k/n<<"\n";
     }
 }
