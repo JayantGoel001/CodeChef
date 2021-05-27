@@ -5,7 +5,7 @@ int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int TOT = 1000;
+    int TOT = 1000000;
     bool isPrime[TOT+1];
     for (int i = 0; i <= TOT; ++i) {
         isPrime[i] = true;
