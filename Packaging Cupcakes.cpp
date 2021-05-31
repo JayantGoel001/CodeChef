@@ -11,18 +11,6 @@ int32_t main(){
     while (t--){
         int n;
         cin>>n;
-        int maxi = -1;
-        int value = -1;
-        for (int i = 2; i <= sqrt(n) ; ++i) {
-            if (n%i>=maxi){
-                maxi = n%i;
-                value = i;
-            }
-            if (n/i!=i && (n/i)%i>=maxi){
-                maxi = (n/i)%i;
-                value = n/i;
-            }
-        }
-        cout<<value<<"\n";
+        cout<<n/2+1<<"\n";
     }
 }
