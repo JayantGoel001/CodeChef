@@ -15,6 +15,7 @@ int32_t main(){
         int count = 0;
         while (x!=0){
             int w = log(x)/log(2);
+            w = min(w,(int)11);
             x-= pow(2,w);
             count++;
         }
