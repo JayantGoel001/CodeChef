@@ -14,7 +14,7 @@ int32_t main(){
         int x;
         for (int i = 0; i < n; ++i) {
             cin>>x;
-            if ((x+10)%7==0){
+            if ((x+k)%7==0){
                 count++;
             }
         }
