@@ -13,8 +13,7 @@ int32_t main(){
         for (int i = 0; i < n; ++i) {
             cin>>ar[i];
         }
-        for (int i = 0; i < n; ++i) {
-            int c = 0;
+        for (int i = 0; i < n-1; ++i) {
             int pos = i;
             for (int j = i+1; j < n; ++j) {
                 if (ar[j]< ar[pos]){
@@ -28,14 +27,6 @@ int32_t main(){
                 cout<<ar[j]<<" ";
             }
             cout<<"\n";
-            for (int j = 0; j < n; ++j) {
-                if (ar[j]> ar[j+1]){
-                    c++;
-                }
-            }
-            if (c==0){
-                break;
-            }
         }
     }
 }
