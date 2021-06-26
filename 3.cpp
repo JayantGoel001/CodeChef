@@ -27,7 +27,15 @@ int32_t main() {
     int t = 1;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
+        int a,b;
+        cin >> a>>b;
+        while (b%2==0){
+            b=b/2;
+        }
+        if (b==1){
+            cout<<"YES\n";
+        } else{
+            cout<<"NO\n";
+        }
     }
 }
