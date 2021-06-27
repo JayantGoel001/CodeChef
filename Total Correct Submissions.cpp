@@ -19,7 +19,6 @@ int power(int x, int y, int MOD = INF) {
         return (x * power((x * x) % MOD, (y - 1) / 2) % MOD) % MOD;
     }
 }
-
 int32_t main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -29,5 +28,21 @@ int32_t main() {
     while (t--) {
         int n;
         cin >> n;
+        map<string,int> mp;
+        for (int i = 0; i < 3*n; ++i) {
+            string str;
+            int x;
+            cin>>str>>x;
+            mp[str]+=x;
+        }
+        vector<int> v;
+        for (const auto& it:mp) {
+            v.push_back(it.second);
+        }
+        sort(v.begin(), v.end());
+        for (long long i : v) {
+            cout<<i<<" ";
+        }
+        cout<<"\n";
     }
 }
