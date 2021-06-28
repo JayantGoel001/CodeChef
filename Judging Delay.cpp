@@ -37,18 +37,12 @@ int32_t main() {
     while (t--) {
         int n;
         cin >> n;
-        for (int i = 0; i < n; ++i) {
-            int key,value;
-            cin>>key>>value;
-            mp[key].push_back(value);
-        }
         int count = 0;
-        for(auto it:mp){
-            sort(it.second.begin(), it.second.end());
-            for (int i = 0; i < it.second.size() - 1; ++i) {
-                if (it.second[i+1]-it.second[i]>=5){
-                    count++;
-                }
+        for (int i = 0; i < n; ++i) {
+            int si,ji;
+            cin>>si>>ji;
+            if (abs(si-ji)>5){
+                count++;
             }
         }
         cout<<count<<"\n";
