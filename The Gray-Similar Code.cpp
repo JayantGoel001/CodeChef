@@ -2,7 +2,7 @@
 #include<ext/pb_ds/assoc_container.hpp>
 #include<ext/pb_ds/tree_policy.hpp>
 
-#define int long long int
+#define int unsigned long long int
 #define INF 1e18
 using namespace __gnu_pbds;
 using namespace std;
