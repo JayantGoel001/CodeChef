@@ -49,9 +49,19 @@ int32_t main() {
                         for (int l = k+1; l < n; ++l) {
                             if (ar[i]^ar[j]^ar[k]^ar[l]==0){
                                 found = true;
+                                break;
                             }
                         }
+                        if (found){
+                            break;
+                        }
                     }
+                    if (found){
+                        break;
+                    }
+                }
+                if (found){
+                    break;
                 }
             }
             if (!found){
