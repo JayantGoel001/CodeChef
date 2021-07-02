@@ -40,7 +40,7 @@ int32_t main() {
             cin>>ar[i];
         }
         if (n>=130){
-            cout<<"YES";
+            cout<<"Yes";
         } else{
             bool found = false;
             for (int i = 0; i < n; ++i) {
@@ -65,9 +65,9 @@ int32_t main() {
                 }
             }
             if (!found){
-                cout<<"NO";
+                cout<<"No";
             } else{
-                cout<<"YES";
+                cout<<"Yes";
             }
         }
         cout << "\n";
