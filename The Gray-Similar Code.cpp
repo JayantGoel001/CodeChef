@@ -42,34 +42,19 @@ int32_t main() {
         if (n>=130){
             cout<<"Yes";
         } else{
-            bool found = false;
             for (int i = 0; i < n; ++i) {
                 for (int j = i+1; j <n ; ++j) {
                     for (int k = j+1; k <n ; ++k) {
                         for (int l = k+1; l < n; ++l) {
-                            if (ar[i]^ar[j]^ar[k]^ar[l]==0){
-                                found = true;
-                                break;
+                            if ((ar[i]^ar[j]^ar[k]^ar[l])==0){
+                                cout<<"Yes\n";
+                                return 0;
                             }
                         }
-                        if (found){
-                            break;
-                        }
-                    }
-                    if (found){
-                        break;
                     }
                 }
-                if (found){
-                    break;
-                }
             }
-            if (!found){
-                cout<<"No";
-            } else{
-                cout<<"Yes";
-            }
+            cout<<"No\n";
         }
-        cout << "\n";
     }
 }
