@@ -1,12 +1,20 @@
-#include <iostream>
-#include <algorithm>
-#define int long long int
+#include <bits/stdc++.h> 
 using namespace std;
-int32_t main(){
-    int ar[3];
-    for (int i = 0; i < 3; ++i) {
-        cin>>ar[i];
-    }
-    sort(ar,ar+3);
-    cout<<ar[1]<<"\n";
+
+int main() {
+	int t,a,b,c;
+	cin>>t;
+	if(1<=t<=1000){
+	while (t--) {
+		cin>>a>>b>>c;
+		int x=max(a,b);
+		x=max(x,c);
+		int y=min(a,b);
+		y=min(y,c);
+		int total=a+b+c;
+		int midn=total-x-y;
+		cout<<midn<<endl;
+	}
+}
+	return 0;
 }
