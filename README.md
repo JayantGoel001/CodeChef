@@ -12,6 +12,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
+    <td align="center"><a href="http://JayantGoel001.github.io"><img src="https://avatars.githubusercontent.com/u/54479676?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jayant Goel</b></sub></a><br /><a href="https://github.com/JayantGoel001/CodeChef/commits?author=JayantGoel001" title="Code">💻</a> <a href="#ideas-JayantGoel001" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/JayantGoel001/CodeChef/commits?author=JayantGoel001" title="Tests">⚠️</a> <a href="#maintenance-JayantGoel001" title="Maintenance">🚧</a> <a href="https://github.com/JayantGoel001/CodeChef/commits?author=JayantGoel001" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/Kushagra2007"><img src="https://avatars.githubusercontent.com/u/79071604?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kushagra Singh</b></sub></a><br /><a href="https://github.com/JayantGoel001/CodeChef/commits?author=Kushagra2007" title="Code">💻</a></td>
   </tr>
 </table>
