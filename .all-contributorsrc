@@ -1,0 +1,37 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "JayantGoel001",
+      "name": "Jayant Goel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54479676?v=4",
+      "profile": "http://JayantGoel001.github.io",
+      "contributions": [
+        "code",
+        "ideas",
+        "test",
+        "maintenance",
+        "doc"
+      ]
+     },
+     {
+      "login": "Kushagra2007",
+      "name": "Kushagra Singh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/79071604?v=4",
+      "profile": "https://github.com/Kushagra2007",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "CodeChef",
+  "projectOwner": "JayantGoel001",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
