@@ -48,51 +48,54 @@ int32_t main() {
             sum+=w;
         }
         for (int i = 1; i <=2; ++i) {
-            sort(initial[i].begin(),  initial[i].end(),greater<int>());
+            sort(initial[i].begin(),  initial[i].end());
         }
-
-        for (int i = 1; i <=sum; ++i) {
+        int costs[sum+1];
+        for (int k = 1; k <= 2; ++k) {
             vector<int> pq[3];
             for (int j = 1; j <=2 ; ++j) {
                 pq[j] = initial[j];
             }
             int cost = 0;
-            int x = i;
-            while (x>=2){
-                int costOne = 0;
-                if (pq[1].size()>=1){
-                    costOne += pq[1][0];
-                }
-                if (pq[1].size()>=2){
-                    costOne += pq[1][1];
-                }
-                int costTwo = 0;
-                if (pq[2].size()>=1){
-                    costTwo+=pq[2][0];
-                }
-                if (costOne>costTwo && (i%2==0 || pq[1].size()>=3)){
-                    cost += costOne;
-                    if (pq[1].size()>=1){
-                        pq[1].erase(pq[1].begin());
-                    }
-                    if (pq[1].size()>=1){
-                        pq[1].erase(pq[1].begin());
+            for (int i = k; i <=sum; i+=2) {
+                if (i==1){
+                    if (!pq[1].empty()){
+                        cost += pq[1][pq[1].size()-1];
+                        pq[1].pop_back();
                     }
                 } else{
-                    cost += costTwo;
+                    int costOne = 0;
+                    if (pq[1].size()>=1){
+                        costOne += pq[1][pq[1].size()-1];
+                    }
+                    if (pq[1].size()>=2){
+                        costOne += pq[1][pq[1].size()-2];
+                    }
+                    int costTwo = 0;
                     if (pq[2].size()>=1){
-                        pq[2].erase(pq[2].begin());
+                        costTwo+=pq[2][pq[2].size()-1];
+                    }
+                    if (costOne>costTwo){
+                        cost += costOne;
+                        if (!pq[1].empty()){
+                            pq[1].pop_back();
+                        }
+                        if (!pq[1].empty()){
+                            pq[1].pop_back();
+                        }
+                    } else{
+                        cost += costTwo;
+                        if (!pq[2].empty()){
+                            pq[2].pop_back();
+                        }
                     }
                 }
-                x-=2;
+                costs[i] = cost;
             }
-            if (x==1){
-                if (!pq[1].empty()){
-                    cost += pq[1][0];
-                    pq[1].erase(pq[1].begin());
-                }
-            }
-            cout<<cost<<" ";
+        }
+
+        for (int i = 1; i <=sum; ++i) {
+            cout<<costs[i]<<" ";
         }
         cout << "\n";
     }
